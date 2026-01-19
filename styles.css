@@ -1,0 +1,293 @@
+/* ============================================
+   BITS OF GOOD - PROFILE CARD
+   ============================================
+   Design: Earth tones, warm and organic
+   Animation: Card entrance + walking dog
+   ============================================ */
+
+/* --- CSS Custom Properties (your "config") --- */
+:root {
+    /* Earth tone palette */
+    --color-bg: #4B352A;              /* Deep brown - background */
+    --color-card-bg: #5a4035;         /* Slightly lighter brown for card */
+    --color-card-border: #CA7842;     /* Warm orange - borders/accents */
+    --color-text-primary: #F0F2BD;    /* Cream/pale yellow - main text */
+    --color-text-secondary: #B2CD9C;  /* Sage green - secondary text */
+    --color-accent: #CA7842;          /* Warm orange - accent */
+    --color-accent-dim: rgba(202, 120, 66, 0.2);
+    --color-green: #B2CD9C;           /* Sage green */
+    --color-cream: #F0F2BD;           /* Cream */
+    
+    /* Typography */
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    
+    /* Card dimensions */
+    --card-max-width: 420px;
+    --card-radius: 16px;
+    --image-size: 140px;
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    
+    /* Subtle organic texture */
+    background-image: 
+        radial-gradient(ellipse at 30% 20%, rgba(202, 120, 66, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 80%, rgba(178, 205, 156, 0.06) 0%, transparent 50%);
+}
+
+/* --- Layout Container --- */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--space-md);
+    padding-bottom: calc(20vh + var(--space-lg)); /* Space for dog */
+}
+
+/* --- Card Component --- */
+.card {
+    width: 100%;
+    max-width: var(--card-max-width);
+    background: var(--color-card-bg);
+    border: 2px solid var(--color-card-border);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    
+    /* Warm shadow */
+    box-shadow: 
+        0 4px 6px -1px rgba(75, 53, 42, 0.3),
+        0 10px 30px -5px rgba(75, 53, 42, 0.4);
+    
+    /* Card entrance animation */
+    animation: cardEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* --- Image Section --- */
+.card__image-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-lg) var(--space-lg) 0;
+    background: linear-gradient(
+        180deg, 
+        var(--color-accent-dim) 0%, 
+        transparent 100%
+    );
+}
+
+.card__image {
+    width: var(--image-size);
+    height: var(--image-size);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-accent);
+    
+    /* Warm glow */
+    box-shadow: 0 0 0 4px var(--color-accent-dim);
+}
+
+/* Placeholder if no image - shows initials */
+.card__image-placeholder {
+    width: var(--image-size);
+    height: var(--image-size);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-accent) 0%, #d4915a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-bg);
+    border: 3px solid var(--color-accent);
+    box-shadow: 0 0 0 4px var(--color-accent-dim);
+}
+
+/* --- Content Section --- */
+.card__content {
+    padding: var(--space-lg);
+    text-align: center;
+}
+
+.card__name {
+    font-family: var(--font-display);
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-cream);
+    margin-bottom: var(--space-xs);
+    letter-spacing: -0.02em;
+}
+
+.card__details {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+}
+
+.card__divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-green), transparent);
+    margin: 0 auto var(--space-md);
+}
+
+.card__passion {
+    font-size: 1rem;
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.card__location {
+    font-size: 0.875rem;
+    color: var(--color-green);
+    opacity: 0.9;
+}
+
+/* ============================================
+   WALKING DOG ANIMATION
+   ============================================ */
+
+.dog-walker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20vh;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.dog {
+    position: absolute;
+    bottom: 1vh;
+    left: 0;
+    height: 19vh;
+    width: auto;
+    
+    /* Combined walk + bounce animation */
+    /* Walk: 12s / 0.6 = 20s (slower lateral) */
+    /* Bounce: 0.35s / 0.8 = 0.44s (slower bounce) */
+    animation: 
+        dogWalk 20s linear infinite,
+        dogBounce 0.44s ease-in-out infinite;
+}
+
+/* Walk back and forth */
+@keyframes dogWalk {
+    0% {
+        left: -8%;
+        transform: scaleX(1) rotate(-3deg);
+    }
+    2% {
+        transform: scaleX(1) rotate(0deg);
+    }
+    /* Walking right */
+    48% {
+        left: 100%;
+        transform: scaleX(1) rotate(0deg);
+    }
+    /* Hit right wall - tilt into bounce */
+    49% {
+        left: 100%;
+        transform: scaleX(1) rotate(10deg);
+    }
+    /* Turn around */
+    51% {
+        left: 100%;
+        transform: scaleX(-1) rotate(-10deg);
+    }
+    52% {
+        transform: scaleX(-1) rotate(0deg);
+    }
+    /* Walking left */
+    98% {
+        left: -8%;
+        transform: scaleX(-1) rotate(0deg);
+    }
+    /* Hit left wall - tilt into bounce */
+    99% {
+        left: -8%;
+        transform: scaleX(-1) rotate(10deg);
+    }
+    /* Turn around for next loop */
+    100% {
+        left: -8%;
+        transform: scaleX(1) rotate(-3deg);
+    }
+}
+
+/* Bounce while walking */
+@keyframes dogBounce {
+    0%, 100% {
+        margin-bottom: 0;
+    }
+    50% {
+        margin-bottom: 6px;
+    }
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+    :root {
+        --image-size: 110px;
+        --card-radius: 12px;
+    }
+    
+    .card__name {
+        font-size: 1.5rem;
+    }
+    
+    .card__content {
+        padding: var(--space-md);
+    }
+}
+
+/* --- Accessibility: Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        animation: none;
+        opacity: 1;
+    }
+    
+    .dog {
+        animation: dogWalk 12s linear infinite;
+    }
+}
