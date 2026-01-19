@@ -27,7 +27,7 @@ const cardData = {
     
     // REQUIRED: Something you're passionate about related to social good
     // Tip: Be specific and personal, not generic
-    passion: "Would love to build something for Bits of Good! Meet my dog below, Zoia",
+    passion: "Would love to build something for Bits of Good! So far, I have loved teaching and passing on my tech knowledge to others, and Bits of Good seems like the perfect opportunity to continue helping those around me. Meet my dog below, Zoia!",
     
     
     // OPTIONAL: Profile image
@@ -77,7 +77,7 @@ function ProfileImage(data) {
 function InfoSection(data) {
     return `
         <h1 class="card__name">${data.name}</h1>
-        <p class="card__details">${data.major} • ${data.year}</p>
+        <p class="card__details">${data.major} <br> ${data.year}</p>
         <div class="card__divider"></div>
     `;
 }
